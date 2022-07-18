@@ -1,15 +1,408 @@
 //====================================================================================================
+.header {
+	&__top {
+	}
 
+	&__body {
+	}
+
+	&__catalog {
+	}
+}
+.top-header {
+	background-color: $mainDarkColor;
+	color: #fff;
+	&__container {
+		display: flex;
+		align-items: center;
+		gap: rem(20);
+		min-height: rem(50);
+	}
+	&__menu {
+		flex: 1 1 auto;
+		gap: 20px;
+	}
+	&__user {
+		display: inline-flex;
+		align-items: center;
+		font-weight: 600;
+		line-height: math.div(20, 18);
+		&::before {
+			font-size: rem(28);
+			margin-right: em(15, 28);
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				span {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}
+//========================================================================================================================================================
+
+.menu {
+	&__body {
+	}
+
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		row-gap: 5px;
+		@include adaptiveValue("column-gap", 60, 20);
+	}
+
+	&__item {
+	}
+
+	&__link {
+		font-size: rem(16);
+		line-height: math.div(20, 16);
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}
+//========================================================================================================================================================
+
+.body-header {
+	padding: rem(10) 0;
+	background-color: #ecf1f2;
+	color: $mainColor;
+
+	&__container {
+		display: flex;
+		min-height: rem(70);
+		align-items: center;
+	}
+
+	&__logo {
+		@extend %ic;
+		@extend ._icon-logo;
+		font-size: rem(42);
+	}
+
+	&__search {
+		flex: 1 1 auto;
+
+		padding: 0px rem(20) 0px 0px;
+		@include adaptiveValue("padding-left", 158, 20);
+	}
+	&__actions {
+	}
+}
+.search-header {
+	max-width: rem(377);
+	color: rgba(0, 0, 0, 1);
+	position: relative;
+	border: 1px solid rgba(4, 4, 4, 0.5);
+
+	&__button {
+		position: absolute;
+		top: 0;
+		left: rem(8);
+		color: rgba(0, 0, 0, 0.5);
+		height: rem(41);
+		width: rem(41);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: rem(16);
+	}
+
+	&__input {
+		background-color: transparent;
+		border-radius: rem(3);
+		height: rem(41);
+		padding: 0px rem(105) 0px rem(50);
+		color: $mainColor;
+		&::placeholder {
+			color: rgba(0, 0, 0, 0.5);
+		}
+	}
+}
+//========================================================================================================================================================
+
+.actions-header {
+	display: flex;
+	align-items: center;
+	column-gap: rem(30);
+	&__location {
+		display: inline-flex;
+		align-items: center;
+		font-weight: 600;
+		margin: 0px rem(25) 0px 0px;
+		&::before {
+			font-size: rem(24);
+			margin: 0px em(10, 24) 0px 0px;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				span {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+
+	&__phones {
+	}
+
+	&__favorite {
+		font-size: rem(27);
+	}
+
+	&__cart {
+	}
+}
+.phones-header {
+	&__items {
+	}
+
+	&__item {
+		position: relative;
+		display: flex;
+	}
+
+	&__phone {
+		font-weight: 600;
+		line-height: math.div(22, 18);
+		color: $mainColor;
+		white-space: nowrap;
+	}
+
+	&__arrow {
+		color: $mainOrange;
+		font-size: rem(10);
+		transition: transform 0.3s ease 0s;
+		margin: 0px 0px 0px em(17, 16);
+		&._spoller-active {
+			transform: rotate(-180deg);
+		}
+	}
+
+	&__list {
+		position: absolute;
+		top: 100%;
+		width: 100%;
+		left: 0;
+		margin: rem(1) 0px 0px 0px;
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+		background-color: #fff;
+		padding: rem(15);
+		border-radius: rem(10);
+		li {
+			&:not(:last-child) {
+				margin-bottom: em(8, 18);
+			}
+		}
+	}
+
+	&__callback {
+		margin: rem(3) 0px 0px 0px;
+		font-weight: 700;
+		line-height: math.div(22, 18);
+		color: $mainOrange;
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}
+.cart-header {
+	display: flex;
+	align-items: center;
+	column-gap: 15px;
+
+	&__icon {
+		flex: 0 0 37px;
+		font-size: rem(35);
+		position: relative;
+		span {
+			position: absolute;
+			width: rem(14);
+			height: rem(14);
+			font-size: rem(7);
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			top: 0;
+			right: 0;
+			color: #fff;
+			background-color: $mainOrange;
+		}
+	}
+
+	&__body {
+		flex: 0 0 auto;
+		font-size: rem(16);
+		line-height: math.div(20, 16);
+	}
+
+	&__summ {
+		&:not(:last-child) {
+			margin-bottom: em(5, 16);
+		}
+		font-weight: 500;
+	}
+
+	&__link {
+		color: $mainOrange;
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}
 //====================================================================================================
+.catalog-header {
+	background-color: $mainDarkColor;
+	color: #fff;
+	position: relative;
+
+	&__container {
+	}
+
+	&__menu {
+	}
+}
+.menu-catalog {
+	&__list {
+		display: flex;
+		gap: 10px;
+		justify-content: space-between;
+	}
+
+	&__item {
+	}
+
+	&__link {
+		min-height: rem(70);
+		display: flex;
+		padding: 0px rem(10);
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		transition: color 0.3s ease 0s;
+		&::after {
+			content: "";
+			opacity: 0;
+			visibility: hidden;
+			position: absolute;
+			bottom: 0;
+			left: rem(10);
+			height: 1px;
+			background-color: $mainOrange;
+			width: calc(100% - rem(20));
+			transition: all 0.3s ease 0s;
+		}
+		@media (any-hover: hover){
+			&:hover{
+				color: $mainOrange;
+				&::after {
+					opacity: 1;
+					visibility: visible;
+				}
+			}
+		}
+		&._sub-menu-active{
+			color: $mainOrange;
+			&::after {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+
+	&__sub-menu {
+		width: 100%;
+		left: 0;
+		top: 100%;
+		background-color: $mainDarkColor;
+	}
+}
+.sub-menu-catalog {
+	&__block {
+		padding-bottom: rem(30);
+		display: none;
+		&._sub-menu-open{
+			display: grid;
+			grid-template-columns: repeat(5, 1fr);
+		}
+	}
+
+		&__container {
+			padding: 0px rem(10);
+		}
+
+
+	&__category {
+		align-self: flex-start;
+		font-size: rem(16);
+		line-height: math.div(20, 16);
+		font-weight: 700;
+		padding: rem(30) rem(15);
+		@media (any-hover: hover){
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+	}
+
+	&__list {
+		flex: 1 1 auto;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		padding: rem(30) rem(15);
+		border-top: 1px solid rgba(255, 255, 255, 0.3);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	}
+
+	&__item {
+	}
+
+	&__link {
+		font-size: rem(16);
+		line-height: math.div(20, 16);
+		@media (any-hover: hover){
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+	}
+
+	&__all {
+		align-self: flex-start;
+		font-size: rem(16);
+		padding-top: rem(30);
+		padding-left: rem(15);
+		padding-right: rem(15);
+		color: $mainOrange;
+		@media (any-hover: hover){
+			&:hover{
+				text-decoration: underline;
+			}
+		}	
+	}
+}
+//========================================================================================================================================================
 
 //Burger
-/*
+
 .icon-menu {
 	display: none;
 	@media (max-width: $mobile) {
 		display: block;
 		position: relative;
-		width: rem(30);
+		flex: 0 0 30px;
 		height: rem(18);
 		cursor: pointer;
 		z-index: 5;
@@ -22,7 +415,7 @@
 			position: absolute;
 			width: 100%;
 			height: rem(2);
-			background-color: #000;
+			background-color: rgb(255, 255, 255);
 		}
 		&::before {
 			top: 0;
@@ -51,4 +444,3 @@
 		}
 	}
 }
-*/
