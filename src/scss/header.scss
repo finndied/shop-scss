@@ -17,19 +17,24 @@
 		align-items: center;
 		gap: rem(20);
 		min-height: rem(50);
+		@media (max-width:$tablet){
+			gap: rem(30)
+		}
 	}
 	&__menu {
 		flex: 1 1 auto;
-		gap: 20px;
 	}
 	&__user {
+		position: relative;
+		z-index: 5;
 		display: inline-flex;
 		align-items: center;
 		font-weight: 600;
 		line-height: math.div(20, 18);
+		gap: em(15, 18);
 		&::before {
 			font-size: rem(28);
-			margin-right: em(15, 28);
+		
 		}
 		@media (any-hover: hover) {
 			&:hover {
@@ -38,17 +43,33 @@
 				}
 			}
 		}
+		@media (max-width:$tablet){
+			&::before {
+				font-size: rem(35);
+			}
+			 span{
+				display: none;
+			 } 
+		}
 	}
 }
 .menu-top-header{
 	&__list {
 		display: flex;
-		flex-wrap: wrap;
 		row-gap: 5px;
 		@include adaptiveValue("column-gap", 60, 20);
+		@media (max-width:$tablet) {
+			flex-direction: column;
+			row-gap: 25px;
+		}
 	}
 
 	&__item {
+		&_catalog{
+			@media (min-width:$tablet) {
+				display: none;	  
+			}
+		}
 	}
 
 	&__link {
@@ -58,9 +79,31 @@
 			&:hover {
 				text-decoration: underline;
 			}
+		 }
+		 &_catalog{
+			display: flex;
+			align-items: center;
+			flex-direction: row-reverse;
+			justify-content: space-between;
+			&::before{
+				flex: 0 0 14px;
+				height: 14px;
+				display: flex;
+				justify-content:center;
+				align-items: center;
+				font-size: rem(8);
+				transform: translateY(rem(-2)) rotate(-90deg);
+				
+			}
+		 }
+		 @media (max-width:$tablet){
+			@include adaptiveValue("font-size", 30, 20, 992, 320, 1);
+		 }
+		}
+		@media (max-width:$tablet){
+			display: none;
 		}
 	}
-}
 //========================================================================================================================================================
 
 .menu {
@@ -70,16 +113,34 @@
 			 width: 100%;
 			 height: 100%;
 			 top: 0;
-			 left: 0;
+			 left: -100%;
 			 overflow: auto;
 			 background-color: $mainDarkColor;
-			 padding: rem(50) rem(15);
+			 padding: rem(100) rem(15) rem(50) rem(15);
+			 transition: all 0.3s ease 0s;
 			 z-index: 4; 
+			 &::before{
+				content:'';
+				position: fixed;
+				width: 100%;
+				height: 70px;
+				left: -100%;
+				top: 0;
+				background-color: $mainDarkColor;
+			 }
+			 .menu-open &{
+				left: 0;
+				&::before{
+					content:'';
+					left: 0;
+				}
+			 }
 		}
 	}
 	@media (max-width: $tablet) {
-		display: block;
-		flex: 0 0 30px;
+		flex: 1 1 auto;
+		display: flex;
+		justify-content: flex-end;
 	}
 }
 //========================================================================================================================================================
@@ -93,6 +154,12 @@
 		display: flex;
 		min-height: rem(70);
 		align-items: center;
+		@media (max-width:$tablet){
+			justify-content: space-between;
+		}
+		@media (max-width:$mobileSmall){
+			 justify-content: center; 
+		}
 	}
 
 	&__logo {
@@ -103,27 +170,33 @@
 
 	&__search {
 		flex: 1 1 auto;
-		padding-right: rem(20);
-		@include adaptiveValue("padding-left", 158, 20, 1620, 1250, 1);
+		@media (min-width:$tablet){
+			padding-right: rem(20);
+		}
+		@media (min-width:$mobileSmall){
+			@include adaptiveValue("padding-left", 158, 20, 1620, 1250, 1);
+		}
 	}
 
 	&__actions {
 	}
 }
 .search-header {
-	max-width: rem(377);
 	color: rgba(0, 0, 0, 1);
-	border-radius: rem(20);
+	border-radius: rem(3);
 	position: relative;
 	border: 1px solid rgba(4, 4, 4, 0.5);
+	@media (min-width: $tablet){
+		max-width: rem(377);
+	}
 
 	&__button {
 		position: absolute;
-		top: 0;
+		top: rem(1.6);
 		left: rem(8);
 		color: rgba(0, 0, 0, 0.5);
-		height: rem(42);
-		width: rem(42);
+		height: rem(38);
+		width: rem(38);
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -131,14 +204,19 @@
 	}
 
 	&__input {
-		border-radius: rem(20);
+		border-radius: rem(3);
 		background-color: transparent;
-		height: rem(41);
+		height: rem(42);
 		padding: 0px rem(20) 0px rem(50);
 		color: $mainColor;
 		&::placeholder {
 			color: rgba(0, 0, 0, 0.5);
+			
 		}
+	}
+	@media (max-width:$mobileSmall){
+		 background-color: #fff; 
+		 
 	}
 }
 //========================================================================================================================================================
@@ -147,6 +225,9 @@
 	z-index: 2;
 	display: flex;
 	align-items: center;
+	@media (max-width:$tablet){
+		display: none;
+	}
 	@include adaptiveValue("column-gap", 30, 20, 1620, 1000, 1);
 
 	&__location {
@@ -171,6 +252,8 @@
 	}
 
 	&__favorite {
+		position: relative;
+		z-index: 5;
 		font-size: rem(27);
 	}
 
@@ -178,6 +261,8 @@
 	}
 }
 .phones-header {
+	position: relative;
+	z-index: 5;
 	&__items {
 	}
 
@@ -187,10 +272,31 @@
 	}
 
 	&__phone {
+		
 		font-weight: 600;
 		line-height: math.div(22, 18);
 		color: $mainColor;
 		white-space: nowrap;
+		&::before{
+			@extend %ic;
+			@extend ._icon-footer-phone; 
+			display: none;
+		}
+		@media (max-width:$tablet){
+			font-size: rem(25);
+			color: #fff;
+		}
+		@media (max-width:$mobileSmall){
+			&::before{
+				display: block;
+				color: #fff;
+				font-size: rem(29);
+			}
+			span{
+				display: none;
+				
+			}
+		}
 	}
 
 	&__arrow {
@@ -200,6 +306,9 @@
 		margin: 0px 0px 0px em(17, 16);
 		&._spoller-active {
 			transform: rotate(-180deg);
+		}
+		@media (max-width:$tablet){
+			display: none;
 		}
 	}
 
@@ -218,6 +327,9 @@
 				margin-bottom: em(8, 18);
 			}
 		}
+		@media (max-width:$tablet){
+			display: none;
+		}
 	}
 
 	&__callback {
@@ -232,13 +344,17 @@
 				text-decoration: underline;
 			}
 		}
+		@media (max-width:$tablet){
+			display: none;
+		}
 	}
 }
 .cart-header {
 	display: flex;
 	align-items: center;
 	column-gap: 15px;
-
+	position: relative;
+	z-index: 5;
 	&__icon {
 		flex: 0 0 37px;
 		font-size: rem(35);
@@ -295,27 +411,69 @@
 
 	&__menu {
 	}
+	@media (max-width:$mobileSmall){
+		 padding: rem(20) 0px; 
+	}
 }
 .menu-catalog {
+	@media (max-width: $tablet) {
+		position: fixed;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: $mainDarkColor;
+		padding: rem(25) rem(15) rem(50) rem(15);
+		transition: left 0.3 ease 0s;
+		.catalog-open & {
+			left: 0;
+			z-index: 6;
+		}
+	}
 	z-index: 1;
 	&__list {
 		display: flex;
-		gap: 10px;
+		column-gap: 10px;
 		justify-content: space-between;
+		@media (max-width:$tablet){
+			flex-direction: column;
+			row-gap: rem(25);
+		}
 	}
 
 	&__item {
 	}
 
 	&__link {
-		min-height: rem(70);
 		display: flex;
-		padding: 0px rem(10);
-		justify-content: center;
-		align-items: center;
-		text-align: center;
 		position: relative;
 		transition: color 0.3s ease 0s;
+		&[data-parent] {
+		 &::before{
+			@extend %ic;
+			@extend ._icon-arrow-bottom;
+			display: none; 
+			@media (max-width:$tablet){
+				display: block;
+				transform: translateY(rem(5)) rotate(-90deg);
+				font-size: rem(10);
+			}
+		 }	
+		 @media (max-width:$tablet){
+			display: flex;
+			width: 100%;
+			flex-direction: row-reverse;
+			justify-content: space-between;
+		 }	
+		}
+		@media (min-width:$tablet){
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			min-height: rem(70);
+			padding: 0px rem(10);
+		}
 		&::after {
 			content: "";
 			opacity: 0;
@@ -337,12 +495,17 @@
 				}
 			}
 		}
+
 		&._sub-menu-active{
 			color: $mainOrange;
 			&::after {
 				opacity: 1;
 				visibility: visible;
 			}
+		}
+	
+		@media (max-width:$tablet){
+			@include adaptiveValue("font-size", 30, 20, 992, 320, 1);
 		}
 	}
 
@@ -353,8 +516,31 @@
 		top: 100%;
 		background-color: $mainDarkColor;
 	}
+	&__back {
+		display: none;
+		@media (max-width:$tablet){
+			display: inline-flex;
+			align-items: center;
+			@include adaptiveValue("font-size", 30, 20, 992, 320, 1);
+			&:not(:last-child) {
+				margin-bottom: em(65, 30);
+			}
+			&::before{
+				margin: 0px em(13, 30) 0px 0px;
+				
+			}
+		}
+	}
 }
 .sub-menu-catalog {
+	@media (max-width:$tablet){
+		
+	}
+	&__back {
+		display: none;
+
+	}
+
 	z-index: 1;
 	&__block {
 		display: none;
@@ -365,33 +551,66 @@
 		}
 		&._sub-menu-open{
 			display: grid;
+			@media (max-width:$tablet){
+				display: block;
+			}
+			
+		
+			@media (max-width:$tablet){
+				display: inline-block;
+				position: absolute;
+				top: 71px;
+				left: 0px;
+				width: 100%;
+				height: 50%;
+				overflow-x: hidden;
+				background-color: $mainDarkColor;
+				padding: rem(25) rem(15) rem(50) rem(15);
+				transition: left 0.3 ease 0s;
+
+				._sub-menu-open & {
+					left: 0;
+					z-index: 6;
+					grid-template-columns: max-content;
+				}
+			}
 		}
 	}
-
 		&__container {
 		padding: 0px rem(10);
 		}
 
 
 	&__category {
-		font-size: rem(16);
+		
 		line-height: math.div(20, 16);
-		font-weight: 700;
-		padding: rem(30) rem(15) rem(30) 0;
 		@media (any-hover: hover){
 			&:hover{
 				text-decoration: underline;
 			}
 		}
+		@media (min-width:$tablet){
+			padding: rem(30) rem(15) rem(30) 0;
+			font-weight: 700;
+		}
+		@media (max-width:$tablet){
+			&:not(:last-child) {
+				margin-bottom: em(20, 16);
+			}
+		}
 	}
 
 	&__list {
+		margin-bottom: 20px;
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
 		padding: rem(30) rem(15) rem(30) 0;
 		border-top: 1px solid rgba(255, 255, 255, 0.3);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+		@media (max-width:$tablet){
+			display: none;
+		}
 	}
 
 	&__item {
@@ -406,15 +625,28 @@
 			}
 		}
 	}
+	&__link-category {
+		@include adaptiveValue("font-size", 30, 20, 992, 320);
+		}
 
 	&_footer {
 		padding: rem(30) rem(15) rem(30) 0;
+		
+		@media (max-width:$tablet){
+			display: none;
+		}
 		}
 
 	&__all {
+		display: block;
+		
 		font-size: rem(16);
 		color: $mainOrange;
+		@media (max-width:$tablet){
+			display: none;
+		}
 		@media (any-hover: hover){
+			
 			&:hover {
 				text-decoration: underline;
 			}
@@ -429,10 +661,10 @@
 	@media (max-width: $tablet) {
 		display: block;
 		position: relative;
-		width: 30px;
-		height: rem(18);
+		width: 40px;
+		height: 22.5px;
 		cursor: pointer;
-		z-index: 5;
+		z-index: 10;
 		span,
 		&::before,
 		&::after {
