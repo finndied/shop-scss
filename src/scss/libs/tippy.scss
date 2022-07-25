@@ -1,4 +1,5 @@
 .tippy-box[data-animation="fade"][data-state="hidden"] {
+	
 	opacity: 0;
 }
 [data-tippy-root] {
@@ -6,13 +7,14 @@
 }
 .tippy-box {
 	position: relative;
-	background-color: #333;
+	background-color: #E8AA31;
 	color: #fff;
 	border-radius: 4px;
 	font-size: 14px;
 	line-height: 1.4;
 	outline: 0;
 	transition-property: transform, visibility, opacity;
+	
 }
 .tippy-box[data-placement^="top"] > .tippy-arrow {
 	bottom: 0;
@@ -58,7 +60,7 @@
 .tippy-arrow {
 	width: 16px;
 	height: 16px;
-	color: #333;
+	color: #E8AA31;
 }
 .tippy-arrow:before {
 	content: "";
@@ -70,4 +72,5 @@
 	position: relative;
 	padding: 5px 9px;
 	z-index: 1;
+	
 }

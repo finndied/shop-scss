@@ -39,7 +39,8 @@
 		@media (any-hover: hover) {
 			&:hover {
 				span {
-					text-decoration: underline;
+					color: $mainOrange;
+					transition: all 0.3s ease 0s;
 				}
 			}
 		}
@@ -77,7 +78,9 @@
 		line-height: math.div(20, 16);
 		@media (any-hover: hover) {
 			&:hover {
-				text-decoration: underline;
+				transition: all 0.3s ease 0s;
+				color: $mainOrange;
+				
 			}
 		 }
 		 &_catalog{
@@ -146,7 +149,7 @@
 //========================================================================================================================================================
 
 .body-header {
-	padding: rem(10) 0;
+	padding: rem(0) 0;
 	background-color: #ecf1f2;
 	color: $mainColor;
 
@@ -242,7 +245,8 @@
 		@media (any-hover: hover) {
 			&:hover {
 				span {
-					text-decoration: underline;
+					transition: all 0.3s ease 0s;
+					color: $mainOrange;
 				}
 			}
 		}
@@ -281,6 +285,10 @@
 			@extend %ic;
 			@extend ._icon-footer-phone; 
 			display: none;
+		}
+		&:hover{
+			transition: all 0.4s ease 0s;
+			color: $mainOrange
 		}
 		@media (max-width:$tablet){
 			font-size: rem(25);
@@ -341,7 +349,8 @@
 		color: $mainOrange;
 		@media (any-hover: hover) {
 			&:hover {
-				text-decoration: underline;
+				transition: all 0.3s ease 0s;
+				color: $mainColor;
 			}
 		}
 		@media (max-width:$tablet){
@@ -377,7 +386,8 @@
 
 	&__body {
 		flex: 0 0 auto;
-		font-size: rem(16);
+		font-size: rem(17);
+		font-weight: 800;
 		line-height: math.div(20, 16);
 		@media (max-width: em(1250)){
 			  display: none;
@@ -388,14 +398,15 @@
 		&:not(:last-child) {
 			margin-bottom: em(5, 16);
 		}
-		font-weight: 500;
+		font-weight: 600;
 	}
 
 	&__link {
 		color: $mainOrange;
 		@media (any-hover: hover) {
 			&:hover {
-				text-decoration: underline;
+				transition: all 0.3s ease 0s;
+				color: $mainColor;
 			}
 		}
 	}
@@ -586,7 +597,8 @@
 		line-height: math.div(20, 16);
 		@media (any-hover: hover){
 			&:hover{
-				text-decoration: underline;
+				transition: all 0.3s ease 0s;
+				color: $mainOrange;
 			}
 		}
 		@media (min-width:$tablet){
@@ -621,7 +633,8 @@
 		line-height: math.div(20, 16);
 		@media (any-hover: hover){
 			&:hover{
-				text-decoration: underline;
+				transition: all 0.3s ease 0s;
+				color: $mainOrange;
 			}
 		}
 	}
@@ -631,7 +644,6 @@
 
 	&_footer {
 		padding: rem(30) rem(15) rem(30) 0;
-		
 		@media (max-width:$tablet){
 			display: none;
 		}
@@ -639,7 +651,7 @@
 
 	&__all {
 		display: block;
-		
+		margin-bottom: rem(20);
 		font-size: rem(16);
 		color: $mainOrange;
 		@media (max-width:$tablet){
@@ -648,7 +660,8 @@
 		@media (any-hover: hover){
 			
 			&:hover {
-				text-decoration: underline;
+				color:#ecf1f2;
+				transition: all 0.3s ease 0s;
 			}
 		}	
 	}

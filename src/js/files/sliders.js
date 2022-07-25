@@ -7,7 +7,7 @@
 // Подключаем слайдер Swiper из node_modules
 // При необходимости подключаем дополнительные модули слайдера, указывая их в {} через запятую
 // Пример: { Navigation, Autoplay }
-import Swiper, { Navigation } from 'swiper';
+import Swiper, { Autoplay, Navigation, Pagination, Parallax,} from 'swiper';
 /*
 Основниые модули слайдера:
 Navigation, Pagination, Autoplay, 
@@ -32,36 +32,37 @@ function initSliders() {
 		new Swiper('.swiper', { // Указываем скласс нужного слайдера
 			// Подключаем модули слайдера
 			// для конкретного случая
-			modules: [Navigation],
+			modules: [Navigation, Pagination, Parallax, Autoplay],
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
-			spaceBetween: 0,
-			autoHeight: true,
+			spaceBetween: 50,
+			parallax: true,
+			//autoHeight: true,
 			speed: 800,
 
 			//touchRatio: 0,
 			//simulateTouch: false,
-			//loop: true,
+			loop: true,
 			//preloadImages: false,
 			//lazy: true,
 
-			/*
-			// Эффекты
-			effect: 'fade',
+			
+		
+			//effect: 'fade',
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: false,
 			},
-			*/
+			
 
 			// Пагинация
-			/*
+			
 			pagination: {
-				el: '.swiper-pagination',
+				el: '.controll-main-block__dotts',
 				clickable: true,
 			},
-			*/
+			
 
 			// Скроллбар
 			/*
@@ -71,11 +72,11 @@ function initSliders() {
 			},
 			*/
 
-			// Кнопки "влево/вправо"
+			/* Кнопки "влево/вправо"
 			navigation: {
 				prevEl: '.swiper-button-prev',
 				nextEl: '.swiper-button-next',
-			},
+			},*/
 
 			// Брейкпоинты
 			/*
@@ -101,7 +102,15 @@ function initSliders() {
 			*/
 			// События
 			on: {
-
+				init: function (swiper) {
+					const allSlides = document.querySelector('.fraction-controll__all');
+					const allSlidesItems = document.querySelectorAll('.swiper-slide:not(.swiper-slide-duplicate)');
+					allSlides.innerHTML = allSlidesItems.length < 10 ? `${allSlidesItems.length}` : swiper.slides.length;
+				},
+				slideChange: function (swiper) {
+					const currentSlide = document.querySelector('.fraction-controll__current');
+					currentSlide.innerHTML = swiper.realIndex + 1 < 10 ? `${swiper.realIndex + 1}` : swiper.realIndex + 1;
+				}
 			}
 		});
 	}
