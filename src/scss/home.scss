@@ -2,8 +2,8 @@
 
 .main-block {
    background: url("@img/mainpage/main-block/bg.jpg") center / cover no-repeat;
-   @include adaptiveValue("padding-top", 40, 20);
-   @include adaptiveValue("padding-bottom", 60, 20);
+   @include adaptiveValue("padding-top", 40, 40);
+   @include adaptiveValue("padding-bottom", 60, 40);
 
    &__container {
    }
@@ -11,9 +11,12 @@
    &__body {
       display: grid;
       align-items: start;
-      grid-template-columns: 1fr percent(635, 1600);
+      row-gap: rem(40);
       &:not(:last-child) {
          @include adaptiveValue("margin-bottom", 43, 30);
+      }
+      @media (min-width: $tablet) {
+         grid-template-columns: 1fr percent(635, 1600);
       }
    }
 
@@ -23,7 +26,6 @@
    }
 
    &__swiper {
-     
    }
 
    &__slide {
@@ -54,8 +56,8 @@
          width: rem(18);
          position: relative;
          transition: all 0.3s ease 0s;
-         &::after{
-            content:'';            
+         &::after {
+            content: "";
             height: rem(2);
             top: 50%;
             position: absolute;
@@ -77,13 +79,11 @@
          }
       }
       .swiper-pagination-bullet-active {
-
-
          width: rem(30);
-         &::after{
+         &::after {
             background-color: $mainOrange;
          }
-         &::before{
+         &::before {
             opacity: 1;
             transition: left 3s linear 0s;
             left: rem(20);
@@ -92,7 +92,6 @@
    }
 
    &__fraction {
-
    }
 }
 .fraction-controll {
@@ -108,14 +107,15 @@
 
    &__all {
       font-size: rem(18);
-      
    }
 }
 
 .slide-main-block {
    &__content {
       color: #fff;
-      padding: rem(0) rem(40) rem(0) rem(0);
+      @media (min-width: $tablet) {
+         padding: rem(0) rem(40) rem(0) rem(0);
+      }
       &:not(:last-child) {
          @include adaptiveValue("margin-bottom", 60, 30);
       }
@@ -123,7 +123,7 @@
 
    &__title {
       font-weight: 700;
-      font-size: rem(36);
+      @include adaptiveValue("font-size", 36, 22, 992, 320, 1);
       line-height: math.div(46, 36);
       &:not(:last-child) {
          margin-bottom: em(15, 36);
@@ -131,7 +131,7 @@
    }
 
    &__sub-title {
-      font-size: rem(36);
+      @include adaptiveValue("font-size", 36, 22, 992, 320, 1);
       line-height: math.div(46, 36);
       &:not(:last-child) {
          margin-bottom: em(30, 36);
@@ -140,12 +140,15 @@
 
    &__text {
       color: #ffffffb2;
-      font-size: rem(20);
+      @include adaptiveValue("font-size", 20, 16, 992, 320, 1);
       line-height: math.div(30, 20);
       padding-bottom: rem(64);
    }
 
    &__button {
+      @media (max-width: $tablet) {
+         width: 100%;
+      }
    }
 }
 .media-main-block {
@@ -161,8 +164,8 @@
    &__image {
       &::before {
          content: "";
-         width: 423px;
-         height: 423px;
+         width: percent(423, 449);
+         padding-bottom: percent(423, 449);
          border: 2px solid rgba(255, 255, 255, 0.5);
          border-radius: 50%;
          position: absolute;
@@ -171,6 +174,7 @@
          transform: translate(percent(131, 423), 0px);
       }
       img {
+         max-width: 100%;
          position: relative;
          z-index: 2;
       }
@@ -182,7 +186,7 @@
       height: 100%;
       top: 0;
       left: 0;
-      z-index: 5;
+      z-index: 3;
    }
 
    &__tip {
@@ -245,16 +249,27 @@
 .advantages-main {
    display: grid;
    grid-template-columns: repeat(4, auto);
-   gap: rem(10);
+   gap: rem(20);
    justify-content: space-between;
+   @media (max-width: $tablet) {
+      row-gap: rem(30);
+      grid-template-columns: repeat(2, 1fr);
+      justify-items: center;
+   }
+   @media (max-width: $mobile) {
+      grid-template-columns: repeat(1, 1fr);
+      row-gap: rem(50);
+   }
    &__item {
-      display: grid;
+      display: inline-grid;
       gap: rem(17);
       text-align: center;
       max-width: rem(290);
+      grid-template-rows: 77px, auto;
    }
 
    &__icon {
+      align-self: center;
    }
 
    &__text {
@@ -262,5 +277,334 @@
       font-weight: 600;
       font-size: rem(20);
       line-height: math.div(32, 20);
+   }
+}
+
+//========================================================================================================================================================
+.catalog-cards {
+   @include adaptiveValue("padding-top", 100, 40);
+   @include adaptiveValue("padding-bottom", 70, 40);
+   &__container {
+      display: grid;
+      gap: rem(30);
+      @media (min-width: $mobileSmall) {
+         grid-template-columns: repeat(auto-fit, minmax(rem(400), 1fr));
+      }
+   }
+
+   &__item {
+   }
+}
+.item-catalog-cards {
+   overflow: hidden;
+   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+   position: relative;
+   min-height: rem(290);
+   transition: box-shadow 0.3s ease 0s;
+   @media (any-hover: hover) {
+      &:hover {
+         box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
+      }
+   }
+
+   &__body {
+      position: relative;
+      z-index: 2;
+      @include adaptiveValue("padding", 30, 20);
+   }
+
+   &__title {
+      &:not(:last-child) {
+         margin-bottom: em(30, 24);
+      }
+      @media (any-hover: hover) {
+         &:hover {
+            color: $mainOrange;
+            transition: all 0.5s ease 0s;
+         }
+      }
+   }
+
+   &__link-title {
+      font-weight: 600;
+      font-size: rem(24);
+      line-height: math.div(34, 24);
+      display: inline-block;
+      &::after {
+         content: "";
+         width: rem(70);
+         height: rem(2);
+         display: block;
+         margin: rem(15) 0 0 0;
+         background-color: $mainOrange;
+         transition: all 0.8s ease 0s;
+      }
+      @media (any-hover: hover) {
+         &:hover {
+            &::after {
+               width: 60%;
+            }
+         }
+      }
+   }
+
+   &__list {
+   }
+
+   &__item {
+      position: relative;
+      padding: 0 0 0 rem(20);
+      &::before {
+         content: "";
+         width: rem(6);
+         height: rem(6);
+         background-color: $mainOrange;
+         border-radius: 50%;
+         position: absolute;
+         left: 0;
+         top: em(9, 18);
+      }
+      &:not(:last-child) {
+         margin-bottom: rem(10);
+      }
+   }
+
+   &__link {
+      font-weight: 500;
+      font-size: rem(18);
+      line-height: math.div(24, 18);
+      @media (any-hover: hover) {
+         &:hover {
+            color: $mainOrange;
+            transition: all 0.3s ease 0s;
+         }
+      }
+   }
+
+   &__image {
+      text-align: right;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      transform: translate(0px, 8%);
+      img {
+         max-width: 100%;
+      }
+      @media (min-width: $tablet) {
+         position: absolute;
+         height: 100%;
+         top: 0;
+         right: 0;
+      }
+   }
+}
+
+//========================================================================================================================================================
+
+.articles-module {
+   @include adaptiveValue("margin-bottom", 120, 40);
+
+   &__container {
+   }
+
+   &__title {
+      letter-spacing: 0.05em;
+      font-size: rem(30);
+      font-weight: 700;
+      line-height: math.div(46, 30);
+      &:not(:last-child) {
+         margin-bottom: em(30, 30);
+      }
+   }
+
+   &__items {
+      display: grid;
+      gap: rem(30);
+      grid-template-columns: repeat(auto-fit, minmax(rem(290), 1fr));
+   }
+
+   &__item {
+   }
+}
+.item-article {
+   background-color: #fff;
+   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+   transition: box-shadow 0.3s ease 0s;
+   @media (max-width: $mobileSmall) {
+      width: 100%;
+   }
+   @media (any-hover: hover) {
+      &:hover {
+         box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.2);
+      }
+   }
+
+   &__image-first {
+      background-image: url("@img/articles-module/01.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      padding-bottom: rem(200);
+   }
+   &__image-second {
+      background-image: url("@img/articles-module/02.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      padding-bottom: rem(200);
+   }
+   &__image-third {
+      background-image: url("@img/articles-module/03.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      padding-bottom: rem(200);
+   }
+   &__image-fourth {
+      background-image: url("@img/articles-module/04.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      padding-bottom: rem(200);
+   }
+
+   &__body {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      @include adaptiveValue("padding", 35, 15);
+   }
+
+   &__title {
+      flex: 1 1 auto;
+      transition: all 0.3s ease 0s;
+      &:not(:last-child) {
+         margin-bottom: em(16, 20);
+      }
+      @media (any-hover: hover) {
+         &:hover {
+            color: $mainOrange;
+         }
+      }
+   }
+
+   &__link-title {
+      font-weight: 600;
+      font-size: rem(20);
+      line-height: math.div(34, 20);
+   }
+
+   &__date {
+      color: #ababab;
+      font-size: rem(16);
+      line-height: math.div(24, 16);
+   }
+}
+
+//========================================================================================================================================================
+.products-block {
+   @include adaptiveValue("margin-bottom", 120, 40);
+
+   &__container {
+      display: grid;
+      gap: rem(30);
+      @media (min-width: $mobileSmall) {
+         grid-template-columns: repeat(auto-fit, minmax(rem(400), 1fr));
+      }
+   }
+
+   &__item {
+   }
+}
+.product-block {
+   overflow: hidden;
+   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+   position: relative;
+   min-height: rem(290);
+   transition: box-shadow 0.3s ease 0s;
+   @media (any-hover: hover) {
+      &:hover {
+         box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
+      }
+   }
+
+   &__body {
+      position: relative;
+      z-index: 2;
+      @include adaptiveValue("padding", 30, 20);
+   }
+
+   &__title {
+      transition: all 0.5s ease 0s;
+      &:not(:last-child) {
+         margin-bottom: em(30, 24);
+      }
+      @media (any-hover: hover){
+         &:hover{
+            color: $mainOrange;
+         }
+      }
+   }
+
+   &__link-title {
+      font-weight: 600;
+      font-size: rem(24);
+      line-height: math.div(34, 24);
+      display: inline-block;
+      &::after {
+         content: "";
+         width: rem(70);
+         height: rem(2);
+         display: block;
+         margin: rem(15) 0px 0px 0px;
+         background-color: $mainOrange;
+         transition: width 0.8s ease 0s;
+      }
+      @media (any-hover: hover) {
+         &:hover {
+            &::after {
+               
+               width: 70%;
+            }
+         }
+      }
+   }
+
+   &__text {
+      font-size: rem(18);
+      line-height: math.div(27, 18);
+      &:not(:last-child) {
+         margin-bottom: em(46, 18);
+      }
+      @media (min-width: em(710)) {
+         max-width: rem(265);
+      }
+   }
+
+   &__button {
+      @media (max-width: em(710)) {
+         width: 100%;
+      }
+   }
+
+   &__image {
+      width: 100%;
+      text-align: right;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      transform: translate(0px, 8%);
+      img {
+         max-width: 100%;
+      }
+      @media (min-width: em(710)) {
+         position: absolute;
+         height: 100%;
+         top: 0;
+         right: 0;
+      }
    }
 }

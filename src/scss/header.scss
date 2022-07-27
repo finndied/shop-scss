@@ -173,53 +173,53 @@
 
 	&__search {
 		flex: 1 1 auto;
-		@media (min-width:$tablet){
+		
+		@media (min-width: $tablet) {
 			padding-right: rem(20);
 		}
-		@media (min-width:$mobileSmall){
+		@media (min-width: $mobileSmall) {
 			@include adaptiveValue("padding-left", 158, 20, 1620, 1250, 1);
 		}
 	}
 
-	&__actions {
-	}
+	&__actions {}
 }
 .search-header {
-	color: rgba(0, 0, 0, 1);
-	border-radius: rem(3);
+	background-color: rgba(7, 7, 7, 0.03);
+	border-radius: rem(29);
 	position: relative;
 	border: 1px solid rgba(4, 4, 4, 0.5);
-	@media (min-width: $tablet){
+	@media (min-width: $tablet) {
 		max-width: rem(377);
 	}
 
 	&__button {
 		position: absolute;
-		top: rem(1.6);
-		left: rem(8);
-		color: rgba(0, 0, 0, 0.5);
-		height: rem(38);
-		width: rem(38);
+		background-color: transparent;
+		height: rem(41);
+		width: rem(41);
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		font-size: rem(16);
+		top: 0;
+		left: rem(8);
+		font-size: rem(14);
+		color: rgba(0, 0, 0, 0.5);
 	}
 
 	&__input {
-		border-radius: rem(3);
+		width: 100%;
 		background-color: transparent;
-		height: rem(42);
-		padding: 0px rem(20) 0px rem(50);
+		border-radius: rem(29);
+		height: rem(41);
 		color: $mainColor;
+		padding: 0px rem(20) 0px rem(50);
 		&::placeholder {
 			color: rgba(0, 0, 0, 0.5);
-			
 		}
-	}
-	@media (max-width:$mobileSmall){
-		 background-color: #fff; 
-		 
+		@media (max-width: $mobileSmall) {
+			background-color: #fff; 
+		}
 	}
 }
 //========================================================================================================================================================
@@ -413,17 +413,15 @@
 }
 //====================================================================================================
 .catalog-header {
+	position: relative;
 	background-color: $mainDarkColor;
 	color: #fff;
-	position: relative;
 
-	&__container {
-	}
+	&__container {}
 
-	&__menu {
-	}
-	@media (max-width:$mobileSmall){
-		 padding: rem(20) 0px; 
+	&__menu {}
+	@media (max-width: $mobileSmall) {
+		padding: rem(20) 0;
 	}
 }
 .menu-catalog {
@@ -436,57 +434,56 @@
 		overflow: auto;
 		background-color: $mainDarkColor;
 		padding: rem(25) rem(15) rem(50) rem(15);
-		transition: left 0.3 ease 0s;
+		transition: left 0.3s ease 0s;
 		.catalog-open & {
 			left: 0;
 			z-index: 6;
 		}
 	}
-	z-index: 1;
+
 	&__list {
 		display: flex;
 		column-gap: 10px;
 		justify-content: space-between;
-		@media (max-width:$tablet){
+		@media (max-width: $tablet) {
 			flex-direction: column;
 			row-gap: rem(25);
 		}
 	}
 
-	&__item {
-	}
+	&__item {}
 
 	&__link {
 		display: flex;
 		position: relative;
 		transition: color 0.3s ease 0s;
 		&[data-parent] {
-		 &::before{
-			@extend %ic;
-			@extend ._icon-arrow-bottom;
-			display: none; 
-			@media (max-width:$tablet){
-				display: block;
-				transform: translateY(rem(5)) rotate(-90deg);
-				font-size: rem(10);
+			&::before {
+				@extend %ic;
+				@extend ._icon-arrow-bottom;
+				display: none; 
+				@media (max-width: $tablet) {
+					transform: translateY(rem(5)) rotate(-90deg);
+					display: block;
+					font-size: rem(10);
+				}
 			}
-		 }	
-		 @media (max-width:$tablet){
-			display: flex;
-			width: 100%;
-			flex-direction: row-reverse;
-			justify-content: space-between;
-		 }	
+			@media (max-width: $tablet) {
+				display: flex;
+				width: 100%;
+				flex-direction: row-reverse;
+				justify-content: space-between;
+			}
 		}
-		@media (min-width:$tablet){
-			justify-content: center;
+		@media (min-width: $tablet) {
+			justify-content:center;
 			align-items: center;
-			text-align: center;
+			text-align: center;			   
 			min-height: rem(70);
 			padding: 0px rem(10);
 		}
-		&::after {
-			content: "";
+		&::after{
+			content:'';
 			opacity: 0;
 			visibility: hidden;
 			position: absolute;
@@ -497,173 +494,167 @@
 			width: calc(100% - rem(20));
 			transition: all 0.3s ease 0s;
 		}
-		@media (any-hover: hover){
-			&:hover{
+		@media (any-hover: hover) {
+			&:hover {
 				color: $mainOrange;
-				&::after {
+				&::after{
 					opacity: 1;
 					visibility: visible;
 				}
 			}
 		}
-
-		&._sub-menu-active{
-			color: $mainOrange;
-			&::after {
-				opacity: 1;
-				visibility: visible;
+		@media (min-width: $tablet) {
+			&._sub-menu-active {
+				&:hover {
+					color: $mainOrange;
+					&::after{
+						opacity: 1;
+						visibility: visible;
+					}
+				}
 			}
 		}
-	
-		@media (max-width:$tablet){
+		@media (max-width: $tablet) {
 			@include adaptiveValue("font-size", 30, 20, 992, 320, 1);
 		}
 	}
 
 	&__sub-menu {
-		z-index: 1;
 		width: 100%;
 		left: 0;
 		top: 100%;
 		background-color: $mainDarkColor;
 	}
+
 	&__back {
 		display: none;
-		@media (max-width:$tablet){
+		@media (max-width: $tablet) {
 			display: inline-flex;
 			align-items: center;
 			@include adaptiveValue("font-size", 30, 20, 992, 320, 1);
 			&:not(:last-child) {
-				margin-bottom: em(65, 30);
+				margin-bottom: em(60, 30);
 			}
-			&::before{
-				margin: 0px em(13, 30) 0px 0px;
-				
+			&::before {
+				margin: 0px em(13, 30) 0px 0px;				
 			}
 		}
 	}
 }
 .sub-menu-catalog {
-	@media (max-width:$tablet){
-		
+	@media (max-width: $tablet) {
+		position: fixed;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: $mainDarkColor;
+		padding: rem(25) rem(15) rem(50) rem(15);
+		transition: left 0.3s ease 0s;
+		.sub-menu-open & {
+			display: block;
+			left: 0;
+			z-index: 6;
+		}
 	}
+
 	&__back {
 		display: none;
-
+		@media (max-width: $tablet) {
+			display: inline-flex;
+			align-items: center;
+			@include adaptiveValue("font-size", 30, 20, 992, 320, 1);
+			&:not(:last-child) {
+				margin-bottom: em(60, 30);
+			}
+			&::before {
+				margin: 0px em(13, 30) 0px 0px;				
+			}
+		}
 	}
 
-	z-index: 1;
+	&__container {
+		padding: 0px rem(10);
+	}
+
 	&__block {
 		display: none;
 		@for $var from 1 to 6 {
-			&_#{$var} {
-				grid-template-columns: repeat($var, minmax(auto, rem(320)));
+			&_#{$var} {	
+			
+				grid-template-columns: repeat($var, minmax(auto, rem(320)));				
 			}
 		}
-		&._sub-menu-open{
+		&._sub-menu-open {		
 			display: grid;
-			@media (max-width:$tablet){
+			@media (max-width: $tablet) {
 				display: block;
-			}
-			
-		
-			@media (max-width:$tablet){
-				display: inline-block;
-				position: absolute;
-				top: 71px;
-				left: 0px;
-				width: 100%;
-				height: 50%;
-				overflow-x: hidden;
-				background-color: $mainDarkColor;
-				padding: rem(25) rem(15) rem(50) rem(15);
-				transition: left 0.3 ease 0s;
-
-				._sub-menu-open & {
-					left: 0;
-					z-index: 6;
-					grid-template-columns: max-content;
-				}
 			}
 		}
 	}
-		&__container {
-		padding: 0px rem(10);
-		}
-
 
 	&__category {
-		
+		font-size: rem(16);
 		line-height: math.div(20, 16);
-		@media (any-hover: hover){
-			&:hover{
-				transition: all 0.3s ease 0s;
-				color: $mainOrange;
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline;
 			}
 		}
-		@media (min-width:$tablet){
-			padding: rem(30) rem(15) rem(30) 0;
+		@media (min-width: $tablet) {
 			font-weight: 700;
+			padding: rem(30) rem(15) rem(30) 0px;
 		}
-		@media (max-width:$tablet){
+		@media (max-width: $tablet) {
 			&:not(:last-child) {
-				margin-bottom: em(20, 16);
+				margin-bottom: em(25, 16);
 			}
 		}
 	}
 
 	&__list {
-		margin-bottom: 20px;
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
-		padding: rem(30) rem(15) rem(30) 0;
+		padding: rem(30) rem(15) rem(30) 0px;
 		border-top: 1px solid rgba(255, 255, 255, 0.3);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-		@media (max-width:$tablet){
+		@media (max-width: $tablet) {
 			display: none;
 		}
 	}
-
-	&__item {
-	}
+	&__item {}
 
 	&__link {
 		font-size: rem(16);
 		line-height: math.div(20, 16);
-		@media (any-hover: hover){
-			&:hover{
-				transition: all 0.3s ease 0s;
-				color: $mainOrange;
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline;
 			}
 		}
 	}
+
 	&__link-category {
 		@include adaptiveValue("font-size", 30, 20, 992, 320);
-		}
+	}
 
-	&_footer {
-		padding: rem(30) rem(15) rem(30) 0;
-		@media (max-width:$tablet){
+	&__footer {
+		padding: rem(30) rem(15) rem(30) 0px;
+		@media (max-width: $tablet) {
 			display: none;
 		}
-		}
+	}
 
 	&__all {
-		display: block;
-		margin-bottom: rem(20);
 		font-size: rem(16);
 		color: $mainOrange;
-		@media (max-width:$tablet){
-			display: none;
-		}
-		@media (any-hover: hover){
-			
+		@media (any-hover: hover) {
 			&:hover {
-				color:#ecf1f2;
-				transition: all 0.3s ease 0s;
+				text-decoration: underline;
 			}
-		}	
+		}
 	}
 }
 //========================================================================================================================================================

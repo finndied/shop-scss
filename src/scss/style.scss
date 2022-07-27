@@ -146,6 +146,7 @@ body {
 @import "header";
 @import "footer";
 
+
 // Подключение стилей отдельных страниц
 @import "home";
 
@@ -158,4 +159,43 @@ body {
 
 	&__main-block {
 	}
+
+	&__catalog-cards {
+	}
+	
+}
+
+
+*,
+html * /* override x.xhtml.ru style */ 
+{
+  scrollbar-width: thin;
+  scrollbar-color: black orange;
+}
+
+*::-webkit-scrollbar,
+html *::-webkit-scrollbar {
+  height: 9px;
+  width: 9px;
+}
+*::-webkit-scrollbar-track,
+html *::-webkit-scrollbar-track {
+  background: $mainDarkColor;
+}
+*::-webkit-scrollbar-thumb,
+html *::-webkit-scrollbar-thumb {
+  background-color: rgb(255, 255, 255);
+  border-radius: 29px;
+  border: 2px solid rgb(0, 0, 0);
+}
+
+
+html {
+
+  overflow: hidden;
+}
+body {
+  
+  overflow-y: auto;
+
 }
